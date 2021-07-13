@@ -34,6 +34,9 @@
 		// The below code is a shorter version of the block commented code above
 		fetch('coffee.jpg')
 		.then(response => {
+		// The promise fetch() does NOT reject on HTTP errors,
+        // so we need to check the boolean Response.ok and throw manually a new Error()
+        // for the promise2 to be rejected (for example when a 404 occurs).
 		  if (!response.ok) {
 			throw new Error(`HTTP error! status: ${response.status}`);
 		  } else {
