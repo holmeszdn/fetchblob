@@ -14,7 +14,7 @@
 			} else {
 				return response.blob();
 			}
-		};
+		});
 		
 		let promise3 = promise2.then(myBlob -> {
 			let objectURL = URL.createObjectURL(myBlob);
