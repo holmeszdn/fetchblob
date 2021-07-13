@@ -7,7 +7,9 @@
   <body>
 	<script>
 		// can do acoffee.jpg if you want to test errors
-		let promise = fetch('coffee.jpg');
+
+		// The below code is a longer version of what we are doing below
+		<!-- let promise = fetch('coffee.jpg');
 		
 		let promise2 = promise.then(response => {
 			if (!response.ok) {
@@ -26,7 +28,28 @@
 		
 		let errorCase = promise3.catch(e => {
 			console.log('There has been a problem with your fetch operation: ' + e.message);
+		}); -->
+		
+		
+		// The below code is a shorter version of the block commented code above
+		fetch('coffee.jpg')
+		.then(response => {
+		  if (!response.ok) {
+			throw new Error(`HTTP error! status: ${response.status}`);
+		  } else {
+			return response.blob();
+		  }
+		})
+		.then(myBlob => {
+		  let objectURL = URL.createObjectURL(myBlob);
+		  let image = document.createElement('img');
+		  image.src = objectURL;
+		  document.body.appendChild(image);
+		})
+		.catch(e => {
+		  console.log('There has been a problem with your fetch operation: ' + e.message);
 		});
+		
 	</script>
   </body>
 </html>
